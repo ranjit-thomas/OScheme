@@ -7,14 +7,15 @@ S-Expression := S-Symbol | ( [S-Expression]* ) | S-Value | S-Definition | S-Cond
 
 S-Symbol := string
 
-*more to come*
+*more S-Value's to come...*
+
 S-Value := int
 
 S-Definition := ( define S-Symbol *Def-Expr* )
 
 S-Conditional := ( if *Cond-Condition* *Cond-If* *Cond-Else* )
 
-S-Func-Call := ( *Func-Name* [*Func-Arg*]/* )
+S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 
 **Note:** All italicized tokens above evaluate to **S-Expressions**.
 
@@ -30,7 +31,7 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]/* )
 
 <h1>DesignPlan</h1>
 
-*Not Yet Implemented (Be sure to update above trees when I do)*:
+<h3>Not Yet Implemented (Be sure to update above trees when I do):</h3>
 - Record
 - Booleans
 - SemiColons
