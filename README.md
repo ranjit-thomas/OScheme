@@ -38,4 +38,3 @@ Plan for WorkFlow:
 - delimeters
 2. Initialize a "convert_to_string" function that converts the tokens to 
 	string (for testing purposes). 
-3. 
