@@ -1,19 +1,35 @@
 
-Context: What makes a Scheme program?
-=====================================
+<h1>Lexical Analysis of Scheme</h1>
 
 S-Program := S-Expression
 
-S-Expression := S-Symbol | ([List of S-Expression]) | S-Value
+S-Expression := S-Symbol | ( [S-Expression]* ) | S-Value | S-Definition | S-Conditional | S-Func-Call
 
-S-Value := int | boolean | string
+S-Symbol := string
 
+*more to come*
+S-Value := int
 
-DesignPlan
-==========
+S-Definition := ( define S-Symbol *Def-Expr* )
 
-NOT YET IMPLIMENTED:
---------------------
+S-Conditional := ( if *Cond-Condition* *Cond-If* *Cond-Else* )
+
+S-Func-Call := ( *Func-Name* [*Func-Arg*]/* )
+
+**Note:** All italicized tokens above evaluate to **S-Expressions**.
+
+<h3> List of Terminals </h3>
+**Note:** These are what the Lexer needs to be parsing for.
+- (
+- )
+- "if"
+- "define"
+- string
+- int
+
+<h1>DesignPlan</h1>
+
+*Not Yet Implemented (Be sure to update above trees when I do)*:
 - Record
 - Booleans
 - SemiColons
@@ -21,9 +37,7 @@ NOT YET IMPLIMENTED:
 - Quote (super important)
 - Non-Int Numbers
 
-
-Plan for WorkFlow:
-------------------
+<h2>Plan for Work Flow:</h2>
 **Setting Up UserInteraction**
 1. Set up a main function that looks exclusively for one or zero arguments.
 2. Set up a function to call when in interactive mode.
