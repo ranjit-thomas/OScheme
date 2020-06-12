@@ -19,6 +19,7 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]/* )
 **Note:** All italicized tokens above evaluate to **S-Expressions**.
 
 <h3> List of Terminals </h3>
+
 **Note:** These are what the Lexer needs to be parsing for.
 - (
 - )
