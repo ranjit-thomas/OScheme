@@ -47,7 +47,7 @@ type token_processor =
  * Returns: bool
  * Does: Checks the "source" attribute of token_processor to see if it's finished parsing the string.
  *)
-let is_finished master_token_processor = some_token_processor.current >= (String.length some_token_processor.source)
+let not_finished master_token_processor = some_token_processor.current < (String.length some_token_processor.source)
 
 (*
  * Input: token_processor
@@ -71,26 +71,46 @@ let advance master_token_processor = { master_token_processor with current = mas
  * tokens in the token_processor.  Updated token_processor is returned.
  *)
 let add_token new_token_type new_token_literal_type new_token_lexeme new_token_line master_token_processor =
- {
+{
  	{
  		(* 
  		 * IMPORTANT: I am constructing the list of tokens in the reverse order.  This means I MUST
  		 * remember to reverse list once entire list has been created.
  		 *)
- 		master_token_processor with tokens = master_token_processor.tokens ::
+ 		master_token_processor with tokens =
+ 		(
  			{
  				type = new_token_type;
  				literal_type = new_token_type;
  				lexeme = new_token_lexeme;
  				line = new_token_line;
  			}
+ 			:: master_token_processor.tokens
+ 		)
  	}
- }
+}
 
 (*
  * Input: token_processor
  * Returns: token_processor
  * Does: Updates input to a include a new token, and then returns the (updated) token_processor.
  *)
-let process_token 
+let process_token master_token_processor = 8
+(* TODO *)
 
+
+(*
+ * Input: string
+ * Returns: token list
+ * Does: Creates a list of tokens by parsing the string representation of a Scheme program.
+ *)
+let process_tokens input =  
+{
+	let master_token_processor = { source: input; start: 0; current: 0; line: 0; tokens: [] }
+	in
+		let _ = 
+			while (not_finished master_token_processor) do
+				process_tokens input master_token_processor
+			done
+		in rev master_token_processor
+}
