@@ -7,8 +7,8 @@
  *)
 
 let run input =
-	let tokens = Lexer.capture_tokens input in 
-	List.iter (fun token -> print_endline token) tokens
+	let tokens = Lexer.process_tokens_initializer input in 
+	List.iter (fun token -> print_endline (Lexer.get_lexeme token)) tokens
 	
 
 let run_interactive _ =

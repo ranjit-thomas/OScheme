@@ -6,8 +6,9 @@
  *)
 
 type token_type =
-	| LEFT_PAREN,
-	| RIGHT_PAREN,
+	
+	| LEFT_PAREN
+	| RIGHT_PAREN
 
 	(* literals *)
 	| SYMBOL
@@ -24,7 +25,7 @@ type token_literal_type = SYMBOL_LITERAL of string | NUMBER_LITERAL of int
 
 type token = 
 {
-	type: token_type;
+	generic_type: token_type;
 	literal_type: token_literal_type option;
 	(* A lexeme is a substring that makes up a small block of the larger string that's being processed. *)
 	(* We don't really need it to evaluate the program... helpful for debugging. *)
@@ -36,6 +37,10 @@ type token =
 type token_processor =
 {
 	source: string;
+	(* 
+	 * The reason we need a different variable for "start" and "current" has to do with when we're tokenizing
+	 * multi-character operators or strings.
+	 *)
 	start: int;
 	current: int;
 	line: int;
@@ -43,11 +48,18 @@ type token_processor =
 }
 
 (*
+ * Input: token
+ * Output: string
+ * Does: Returns the lexeme attribute of a token.  Allows us to keep the "token" type hidden.
+ *)
+ let get_lexeme processed_token = processed_token.lexeme
+
+(*
  * Input: token_processor
  * Returns: bool
  * Does: Checks the "source" attribute of token_processor to see if it's finished parsing the string.
  *)
-let not_finished master_token_processor = some_token_processor.current < (String.length some_token_processor.source)
+let is_finished master_token_processor = master_token_processor.current >= (String.length master_token_processor.source)
 
 (*
  * Input: token_processor
@@ -72,22 +84,20 @@ let advance master_token_processor = { master_token_processor with current = mas
  *)
 let add_token new_token_type new_token_literal_type new_token_lexeme new_token_line master_token_processor =
 {
- 	{
- 		(* 
- 		 * IMPORTANT: I am constructing the list of tokens in the reverse order.  This means I MUST
- 		 * remember to reverse list once entire list has been created.
- 		 *)
- 		master_token_processor with tokens =
- 		(
- 			{
- 				type = new_token_type;
- 				literal_type = new_token_type;
- 				lexeme = new_token_lexeme;
- 				line = new_token_line;
- 			}
- 			:: master_token_processor.tokens
- 		)
- 	}
+	(* 
+	 * IMPORTANT: I am constructing the list of tokens in the reverse order.  This means I MUST
+	 * remember to reverse list once entire list has been created.
+	 *)
+	master_token_processor with tokens =
+	(
+		{
+			generic_type = new_token_type;
+			literal_type = new_token_literal_type;
+			lexeme = new_token_lexeme;
+			line = new_token_line;
+		}
+		:: master_token_processor.tokens
+	)
 }
 
 (*
@@ -95,22 +105,22 @@ let add_token new_token_type new_token_literal_type new_token_lexeme new_token_l
  * Returns: token_processor
  * Does: Updates input to a include a new token, and then returns the (updated) token_processor.
  *)
-let process_token master_token_processor = 8
-(* TODO *)
-
+let process_token master_token_processor = { master_token_processor with current = master_token_processor.current + 1 }
 
 (*
  * Input: string
  * Returns: token list
  * Does: Creates a list of tokens by parsing the string representation of a Scheme program.
  *)
-let process_tokens input =  
-{
-	let master_token_processor = { source: input; start: 0; current: 0; line: 0; tokens: [] }
-	in
-		let _ = 
-			while (not_finished master_token_processor) do
-				process_tokens input master_token_processor
-			done
-		in rev master_token_processor
-}
+let rec process_tokens master_token_processor =  
+	if (is_finished master_token_processor) then List.rev master_token_processor.tokens else
+		let new_token_processor = { master_token_processor with start = master_token_processor.current }
+		in process_tokens (process_token new_token_processor)
+
+(*
+ * Input: string
+ * Returns: token list
+ * Does: Initializes a new token_processor that will be used in the recursive "process_tokens" function.
+ *)
+let process_tokens_initializer input_string =
+	process_tokens { source = input_string; start = 0; current = 0; line = 1; tokens = [] }
