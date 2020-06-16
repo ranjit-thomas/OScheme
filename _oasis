@@ -1,0 +1,23 @@
+Name: OScheme
+Version: 0.1
+Synopsis: An Interpreter for Scheme Written in OCaml
+Authors: Ranjit Thomas ranjit.thomas20@gmail.com
+License: LGPL with OCaml linking exception
+
+Description: See README.md
+
+OASISFormat: 0.4
+BuildTools: ocamlbuild
+Plugins: META (0.4), DevFiles (0.4)
+
+Executable "OScheme"
+    Path: src
+    MainIs: OScheme.ml
+    CompiledObject: best
+    BuildDepends:
+        OScheme
+
+Library "OScheme"
+    Path: src
+    Modules: OScheme
+    InternalModules: Lexer
