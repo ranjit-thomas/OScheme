@@ -32,6 +32,7 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 <h1>DesignPlan</h1>
 
 <h3>Not Yet Implemented (Be sure to update above trees when I do):</h3>
+- ERROR HANDELING!!!!!
 - Record
 - Booleans
 - SemiColons

@@ -67,7 +67,7 @@ let is_finished master_token_processor = master_token_processor.current >= (Stri
  * Does: Returns (if no out of bounds exception) option of the next char in the source string.
  *)
 let get_next_char master_token_processor = 
-	try Some (String.get master_token_processor.source master_token_processor.current) with Invalid_argument _ -> None
+	try Some(String.get master_token_processor.source (master_token_processor.current - 1)) with Invalid_argument _ -> None
 
 (*
  * Input: token_processor
@@ -105,7 +105,13 @@ let add_token new_token_type new_token_literal_type new_token_lexeme new_token_l
  * Returns: token_processor
  * Does: Updates input to a include a new token, and then returns the (updated) token_processor.
  *)
-let process_token master_token_processor = { master_token_processor with current = master_token_processor.current + 1 }
+let process_token master_token_processor = 
+	let master_token_processor = advance master_token_processor
+	in 
+		match get_next_char master_token_processor with
+		| Some '(' -> add_token LEFT_PAREN None "(" master_token_processor.line master_token_processor
+		| Some ')' -> add_token RIGHT_PAREN None ")" master_token_processor.line master_token_processor
+		| _ -> failwith "Invalid character."
 
 (*
  * Input: string
