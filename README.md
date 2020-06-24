@@ -33,12 +33,12 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 
 <h3>Not Yet Implemented (Be sure to update above trees when I do):</h3>
 - ERROR HANDELING!!!!!
+- Negative Numbers
 - Record
 - Booleans
 - SemiColons
 - Strings
 - Quote (super important)
-- Non-Int Numbers
 
 <h2>Plan for Work Flow:</h2>
 **Setting Up UserInteraction**

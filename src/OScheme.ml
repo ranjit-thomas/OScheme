@@ -19,7 +19,6 @@ let run_interactive _ =
 	done
 
 let run_with_file filename =
-	print_endline "entered here";
 	let file_pointer = open_in filename in
 	(* attempt to read entire file *)
     try
