@@ -17,6 +17,7 @@ type token_type =
 	(* keywords *)
 	| IF
 	| DEFINE
+	| LAMBDA
 
 	(* Token that explicitly marks the end of the file. *)
 	| EOF
@@ -104,7 +105,7 @@ let find_match char_to_match master_token_processor =
  * Does: Takes a list of attributes for a token, constructs a token, and adds said token to the list of 
  * tokens in the token_processor.  Updated token_processor is returned.
  *)
-let add_token new_token_type new_token_literal_type new_token_lexeme new_token_line master_token_processor =
+let add_token new_token_type new_token_literal_type new_token_lexeme master_token_processor =
 {
 	(* 
 	 * IMPORTANT: I am constructing the list of tokens in the reverse order.  This means I MUST
@@ -116,7 +117,7 @@ let add_token new_token_type new_token_literal_type new_token_lexeme new_token_l
 			generic_type = new_token_type;
 			literal_type = new_token_literal_type;
 			lexeme = new_token_lexeme;
-			line = new_token_line;
+			line = master_token_processor.line;
 		}
 		:: master_token_processor.tokens
 	)
@@ -175,7 +176,37 @@ let add_number_token master_token_processor =
 	let master_token_processor = collect_decimal (collect_digits master_token_processor) in
 	let number_as_string = String.sub master_token_processor.source master_token_processor.start (master_token_processor.current - master_token_processor.start) in
 	let number_as_float = float_of_string number_as_string in
-	add_token NUMBER (Some (NUMBER_LITERAL number_as_float)) number_as_string master_token_processor.line master_token_processor
+	add_token NUMBER (Some (NUMBER_LITERAL number_as_float)) number_as_string master_token_processor
+
+(*
+ * Input: char option
+ * Returns: bool
+ * Does: Returns true iff the char option passed in is a an alphabetic character by looking at its asccii value
+ *)
+let is_alpha character =
+	match character with
+	| Some c when c >= 'a' && c <= 'z' -> true
+	| Some c when c >= 'A' && c <= 'Z' -> true
+	| Some c when c = '_' || c = '-' -> true
+	| _ -> false
+
+(*
+ * Input: token_processor
+ * Returns: token_processor
+ * Does: Parses the input_string until a non-alpha char is reached, then returns token_processor that 
+ * includes new token for the number that was just parsed. 
+ *)
+let rec add_symbol_token master_token_processor =
+	if (is_alpha (get_next_char master_token_processor)) then add_symbol_token (advance master_token_processor)
+else
+	let symbol_string = String.sub master_token_processor.source master_token_processor.start (master_token_processor.current - master_token_processor.start) in
+	match symbol_string with
+	(* Since OCaml has only a few basic keywords, we begin with special cases so that they're corresponding
+	   tokens can be processed. *)
+	| "if" -> add_token IF None "if*" master_token_processor
+	| "define" -> add_token DEFINE None "define*" master_token_processor
+	| "lambda" -> add_token LAMBDA None "lambda*" master_token_processor
+	| _ -> add_token SYMBOL (Some (SYMBOL_LITERAL symbol_string)) symbol_string master_token_processor
 
 (*
  * Input: token_processor
@@ -194,9 +225,10 @@ let process_token master_token_processor =
 		(* Newline doesn't add any tokens, just incriments the line attribute. *)
 		| Some '\n' -> { master_token_processor with line = master_token_processor.line + 1 }
 
-		| Some '(' -> add_token LEFT_PAREN None "(" master_token_processor.line master_token_processor
-		| Some ')' -> add_token RIGHT_PAREN None ")" master_token_processor.line master_token_processor
+		| Some '(' -> add_token LEFT_PAREN None "(" master_token_processor
+		| Some ')' -> add_token RIGHT_PAREN None ")" master_token_processor
 		| numb when is_digit numb -> add_number_token master_token_processor
+		| alpha when is_alpha alpha -> add_symbol_token master_token_processor
 		| _ -> failwith "Invalid character."
 
 (*

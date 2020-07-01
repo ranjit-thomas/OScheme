@@ -39,6 +39,7 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 - SemiColons
 - Strings
 - Quote (super important)
+- Symbols that are expanded to include non-alphabetic characters
 
 <h2>Plan for Work Flow:</h2>
 **Setting Up UserInteraction**
