@@ -1,4 +1,15 @@
 
+<h1>Not Yet Implemented (Be sure to update above trees when I do):</h1>
+
+- ERROR HANDELING!!!!!
+- Negative Numbers
+- Record
+- Booleans
+- SemiColons
+- Strings
+- Quote (super important)
+- Symbols that are expanded to include non-alphabetic characters
+
 <h1>Lexical Analysis of Scheme</h1>
 
 S-Program := S-Expression
@@ -31,27 +42,15 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 
 <h1>DesignPlan</h1>
 
-<h3>Not Yet Implemented (Be sure to update above trees when I do):</h3>
-- ERROR HANDELING!!!!!
-- Negative Numbers
-- Record
-- Booleans
-- SemiColons
-- Strings
-- Quote (super important)
-- Symbols that are expanded to include non-alphabetic characters
+<h2>The "Front End"</h2>
 
-<h2>Plan for Work Flow:</h2>
-
-<h3>The "Front End"</h3>
-
-<h4>Setting Up UserInteraction</h4>
+<h3>Setting Up UserInteraction</h3>
 1. Set up a main function that looks exclusively for one or zero arguments.
 2. Set up a function to call when in interactive mode.
 3. Set up a function to call when in input-file mode.
 4. Set up a generic, "run" function.
 
-<h4>The Lexer</h4>
+<h3>The Lexer</h3>
 1. Define tokens in a file titled "token.ml".  Should include tokens for:
 - identifiers
 - literals
@@ -64,6 +63,6 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 4. Cover all cases for non-literals.
 5. Cover cases for literals (symbols and numbers).
 
-<h4>The Parser</h4>
+<h3>The Parser</h3>
 
-<h3>The Back End</h3>
+<h2>The Back End</h2>
