@@ -9,6 +9,7 @@
 - Strings
 - Quote (super important)
 - Symbols that are expanded to include non-alphabetic characters
+- Migrate this entire file to another file with another name, and make this actual "README".
 
 <h1>Lexical Analysis of Scheme</h1>
 
