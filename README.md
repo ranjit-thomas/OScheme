@@ -67,3 +67,13 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 <h3>The Parser</h3>
 
 <h2>The Back End</h2>
+
+<h3>Creating the Byte code</h3>
+
+<h3>Creating the Native Code (via a mini-compiler)</h3>
+
+<h3>Runtime Responsabilities</h3>
+
+**Note:** Still not really sure what these are... peep section 2.1.8 of https://craftinginterpreters.com/a-map-of-the-territory.html
+
+
