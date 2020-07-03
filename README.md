@@ -42,13 +42,16 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 - Symbols that are expanded to include non-alphabetic characters
 
 <h2>Plan for Work Flow:</h2>
-**Setting Up UserInteraction**
+
+<h3>The "Front End"</h3>
+
+<h4>Setting Up UserInteraction</h4>
 1. Set up a main function that looks exclusively for one or zero arguments.
 2. Set up a function to call when in interactive mode.
 3. Set up a function to call when in input-file mode.
 4. Set up a generic, "run" function.
 
-**The Lexer**
+<h4>The Lexer</h4>
 1. Define tokens in a file titled "token.ml".  Should include tokens for:
 - identifiers
 - literals
@@ -56,3 +59,11 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 - delimeters
 2. Initialize a "convert_to_string" function that converts the tokens to 
 	string (for testing purposes). 
+3. Write a general, process_tokens function that iterates over the input and generates 
+	new tokens from the strings in input file.
+4. Cover all cases for non-literals.
+5. Cover cases for literals (symbols and numbers).
+
+<h4>The Parser</h4>
+
+<h3>The Back End</h3>
