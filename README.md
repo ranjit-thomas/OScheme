@@ -1,5 +1,5 @@
 
-<h1>Not Yet Implemented (Be sure to update above trees when I do):</h1>
+<h3>Not Yet Implemented (Be sure to update above trees when I do):</h3>
 
 - ERROR HANDELING!!!!!
 - Negative Numbers
@@ -42,7 +42,7 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 
 <h1>DesignPlan</h1>
 
-<h2>The "Front End"</h2>
+<h2>The Front End</h2>
 
 <h3>Setting Up UserInteraction</h3>
 1. Set up a main function that looks exclusively for one or zero arguments.
