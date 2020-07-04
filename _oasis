@@ -10,14 +10,13 @@ OASISFormat: 0.4
 BuildTools: ocamlbuild
 Plugins: META (0.4), DevFiles (0.4)
 
+Library "Interpreter"
+    Path: src
+    Modules: Lexer, Parser
+    InternalModules: Token
+
 Executable "OScheme"
     Path: src
     MainIs: OScheme.ml
     CompiledObject: best
-    BuildDepends:
-        OScheme
-
-Library "OScheme"
-    Path: src
-    Modules: OScheme
-    InternalModules: Lexer
+    BuildDepends: Interpreter

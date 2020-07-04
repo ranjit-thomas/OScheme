@@ -6,9 +6,14 @@
  *
  *)
 
+(*
+ * Return to this to "make it prettier" once end-to-end program is working.
+ *)
 let run input =
 	let tokens = Lexer.process_tokens_initializer input in 
-	List.iter (fun token -> print_endline (Lexer.get_lexeme token)) tokens
+	let _ = List.iter (fun token -> print_endline (Lexer.get_lexeme token)) tokens in
+	let _ = Parser.tokens_to_s_expr tokens in
+	()
 	
 
 let run_interactive _ =

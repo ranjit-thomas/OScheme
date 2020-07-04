@@ -1,4 +1,4 @@
-cat-dog dog_cat
+cat-dog quote dog_cat
 (defone define
 	()3worldif53459 87lambda2.3(
 hello
