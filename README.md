@@ -7,15 +7,16 @@
 - Booleans
 - SemiColons
 - Strings
-- Quote (super important)
 - Symbols that are expanded to include non-alphabetic characters
 - Migrate this entire file to another file with another name, and make this actual "README".
 
-<h1>Lexical Analysis of Scheme</h1>
+<h1>Lexical Analysis of Scheme (AST used by interpereter)</h1>
 
 S-Program := S-Expression
 
-S-Expression := S-Symbol | ( [S-Expression]* ) | S-Value | S-Definition | S-Conditional | S-Func-Call
+S-Expression := S-Symbol | S-List | S-Value | S-Definition | S-Conditional | S-Func-Call
+
+S-List := ( [S-Expression]* )
 
 S-Symbol := string
 
@@ -34,10 +35,13 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 <h3> List of Terminals </h3>
 
 **Note:** These are what the Lexer needs to be parsing for.
+
 - (
 - )
 - "if"
 - "define"
+- "quote"
+- "lambda"
 - string
 - int
 
@@ -46,12 +50,14 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 <h2>The Front End</h2>
 
 <h3>Setting Up UserInteraction</h3>
+
 1. Set up a main function that looks exclusively for one or zero arguments.
 2. Set up a function to call when in interactive mode.
 3. Set up a function to call when in input-file mode.
 4. Set up a generic, "run" function.
 
 <h3>The Lexer</h3>
+
 1. Define tokens in a file titled "token.ml".  Should include tokens for:
 - identifiers
 - literals
@@ -65,6 +71,13 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 5. Cover cases for literals (symbols and numbers).
 
 <h3>The Parser</h3>
+
+1. Initialize an enum for each piece of grammar in Scheme (see above lexical analysis of scheme).
+2. Write a "tokens_to_s-expr" function.  Should include following cases:
+	1. Any element of the AST
+	2. Early EOF --> an error.
+	3. Unmatched closing paranthese --> an error.
+	4. Open paranthesis --> a list of S-Expresions that need to be recursed on.
 
 <h2>The Back End</h2>
 

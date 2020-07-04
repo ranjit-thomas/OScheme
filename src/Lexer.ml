@@ -18,6 +18,7 @@ type token_type =
 	| IF
 	| DEFINE
 	| LAMBDA
+	| QUOTE
 
 	(* Token that explicitly marks the end of the file. *)
 	| EOF
@@ -206,6 +207,7 @@ else
 	| "if" -> add_token IF None "if*" master_token_processor
 	| "define" -> add_token DEFINE None "define*" master_token_processor
 	| "lambda" -> add_token LAMBDA None "lambda*" master_token_processor
+	| "quote" -> add_token QUOTE None "quote*" master_token_processorß
 	| _ -> add_token SYMBOL (Some (SYMBOL_LITERAL symbol_string)) symbol_string master_token_processor
 
 (*
