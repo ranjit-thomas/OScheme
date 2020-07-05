@@ -49,14 +49,14 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 
 <h1>DesignPlan</h1>
 
-<h2>The Front End</h2>
-
-<h3>Setting Up UserInteraction</h3>
+<h3>Prologue: Setting Up User-Interaction</h3>
 
 1. Set up a main function that looks exclusively for one or zero arguments.
 2. Set up a function to call when in interactive mode.
 3. Set up a function to call when in input-file mode.
 4. Set up a generic, "run" function.
+
+<h2>The Front End</h2>
 
 <h3>The Lexer</h3>
 
