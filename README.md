@@ -2,6 +2,8 @@
 <h3>Not Yet Implemented (Be sure to update above trees when I do):</h3>
 
 - ERROR HANDELING!!!!!
+- Not really sure if t ype checking is happening or where its supposed to happen.
+- Defining a function *without* using "lambda". 
 - Negative Numbers
 - Record
 - Booleans
@@ -14,7 +16,7 @@
 
 S-Program := S-Expression
 
-S-Expression := S-Symbol | S-List | S-Value | S-Definition | S-Conditional | S-Func-Call
+S-Expression := S-Symbol | S-List | S-Value | S-Definition | S-Conditional | S-Func-Call | S-Anonym-Func
 
 S-List := ( [S-Expression]* )
 
@@ -59,10 +61,10 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 <h3>The Lexer</h3>
 
 1. Define tokens in a file titled "token.ml".  Should include tokens for:
-- identifiers
-- literals
-- operators
-- delimeters
+	1. identifiers
+	2. literals
+	3. operators
+	4. delimeters
 2. Initialize a "convert_to_string" function that converts the tokens to 
 	string (for testing purposes). 
 3. Write a general, process_tokens function that iterates over the input and generates 
