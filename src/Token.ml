@@ -14,6 +14,8 @@ type token_type =
 	| SYMBOL
 	| NUMBER
 
+	| BOOLEAN of bool
+
 	(* keywords *)
 	| IF
 	| DEFINE

@@ -1,12 +1,12 @@
 
 <h3>Not Yet Implemented (Be sure to update above trees when I do):</h3>
 
-- ERROR HANDELING!!!!!
-- Not really sure if t ype checking is happening or where its supposed to happen.
+- Error checking doesn't really point on what the syntax error is nor where it occurs (line number).
+- S-Expressions need to be pointers.
+- Lists
 - Defining a function *without* using "lambda". 
 - Negative Numbers
 - Record
-- Booleans
 - SemiColons
 - Strings
 - Symbols that are expanded to include non-alphabetic characters

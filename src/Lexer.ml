@@ -187,6 +187,11 @@ let process_token master_token_processor =
 
 		| Some '(' -> add_token LEFT_PAREN None "(" master_token_processor
 		| Some ')' -> add_token RIGHT_PAREN None ")" master_token_processor
+		| Some '#' -> (match find_match 't' master_token_processor with
+			| (true, master_token_processor) -> add_token (BOOLEAN true) None "true" master_token_processor
+			| _ -> (match find_match 'f' master_token_processor with
+				| (true, master_token_processor) -> add_token (BOOLEAN false) None "false" master_token_processor
+				| _ -> failwith "Lone '#' character."))
 		| numb when is_digit numb -> add_number_token master_token_processor
 		| alpha when is_alpha alpha -> add_symbol_token master_token_processor
 		| _ -> failwith "Invalid character."

@@ -13,6 +13,8 @@ type token_type =
 	(* literals *)
 	| SYMBOL
 	| NUMBER
+	
+	| BOOLEAN of bool
 
 	(* keywords *)
 	| IF
