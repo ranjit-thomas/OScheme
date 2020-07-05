@@ -81,6 +81,7 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 	3. Unmatched closing paranthese --> an error.
 	4. Open paranthesis --> a list of S-Expresions that need to be recursed on.
 <h3>The Evaluater</h3>
+
 **Note:** This is where we'll create an "env" where we'll finaly be able to include some unary and binary operators (see "Environemnts" section of https://norvig.com/lispy.html)
 
 <h2>The Back End</h2>
