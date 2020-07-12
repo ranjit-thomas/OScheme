@@ -22,9 +22,6 @@ type token_type =
 	| LAMBDA
 	| QUOTE
 
-	(* Token that explicitly marks the end of the file. *)
-	| EOF
-
 type token_literal_type = SYMBOL_LITERAL of string | NUMBER_LITERAL of float
 
 type token = 

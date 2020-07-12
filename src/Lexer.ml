@@ -82,13 +82,6 @@ let add_token new_token_type new_token_literal_type new_token_lexeme master_toke
 	)
 }
 
-(* 
- * Input: none
- * Returns: token
- * Does: Generates the "eof" token.
- *)
-let new_eof_token = { generic_type = EOF; literal_type = None; lexeme = "done!"; line = 0}
-
 (*
  * Input: char option
  * Returns: bool
@@ -202,7 +195,7 @@ let process_token master_token_processor =
  * Does: Creates a list of tokens by parsing the string representation of a Scheme program.
  *)
 let rec process_tokens master_token_processor =  
-	if (is_finished master_token_processor) then List.rev (new_eof_token :: master_token_processor.tokens) else
+	if (is_finished master_token_processor) then List.rev master_token_processor.tokens else
 		let new_token_processor = { master_token_processor with start = master_token_processor.current } in 
 		process_tokens (process_token new_token_processor)
 

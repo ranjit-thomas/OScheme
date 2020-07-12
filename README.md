@@ -1,7 +1,8 @@
 
 <h3>Not Yet Implemented (Be sure to update above trees when I do):</h3>
 
-- Error checking doesn't really point on what the syntax error is nor where it occurs (line number).
+- More specific error messages.
+- Running empty scheme programs.
 - S-Expressions need to be pointers.
 - Lists
 - Defining a function *without* using "lambda". 
