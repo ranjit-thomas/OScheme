@@ -47,3 +47,5 @@ type token_processor =
 	line: int;
 	tokens: token list; 
 }
+
+val token_compare: token -> token -> bool

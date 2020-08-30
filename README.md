@@ -12,6 +12,8 @@
 - Strings
 - Symbols that are expanded to include non-alphabetic characters
 - Migrate this entire file to another file with another name, and make this actual "README".
+- Create a script that runs all the other testing scripts.
+- Consider removing the "token_literal_type" filed of token and somehow directly incorporating the literals into "token_type"
 
 <h1>Lexical Analysis of Scheme (AST used by interpereter)</h1>
 
@@ -81,18 +83,12 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 	2. Early EOF --> an error.
 	3. Unmatched closing paranthese --> an error.
 	4. Open paranthesis --> a list of S-Expresions that need to be recursed on.
-<h3>The Evaluater</h3>
-
-**Note:** This is where we'll create an "env" where we'll finaly be able to include some unary and binary operators (see "Environemnts" section of https://norvig.com/lispy.html)
+3. Write a file to test each case.
 
 <h2>The Back End</h2>
 
-<h3>Creating the Byte code</h3>
+<h3>The Evaluater</h3>
 
-<h3>Creating the Native Code (via a mini-compiler)</h3>
-
-<h3>Runtime Responsabilities</h3>
-
-**Note:** Still not really sure what these are... peep section 2.1.8 of https://craftinginterpreters.com/a-map-of-the-territory.html
+**Note:** This is where we'll create an "env" where we'll finaly be able to include some unary and binary operators (see "Environemnts" section of https://norvig.com/lispy.html)
 
 

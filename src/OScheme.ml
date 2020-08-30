@@ -1,21 +1,17 @@
 (*
  *	OScheme.ml 
  *
- *	Contains "int main" function that functions as interpereter.  If no filename is passed into the
- *	function, program is run interactively.
+ *	Contains "int main" function that functions as interpereter.  Opens and reads the contents 
+ *  of any file read at the command line.  If no filename is called, program is run interactively.
  *
  *)
 
-(*
- * Return to this to "make it prettier" once end-to-end program is working.
- *)
-let run input =
+ let run input =
 	let tokens = Lexer.process_tokens_initializer input in 
 	let _ = List.iter (fun token -> print_endline (Lexer.get_lexeme token)) tokens in
 	let (_, _) = Parser.tokens_to_s_expr tokens in
 	()
 	
-
 let run_interactive _ =
 	print_endline "Enter input below:";
 	while true do

@@ -5,7 +5,6 @@
  *
  *)
 
-(* Only put shit in here that we actually need the client to see. *)
 open Token;;
 
 val get_lexeme: token -> string

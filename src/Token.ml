@@ -47,3 +47,5 @@ type token_processor =
 	line: int;
 	tokens: token list; 
 }
+
+let token_compare token_1 token_2 = (token_1.generic_type = token_2.generic_type) && (token_1.literal_type = token_2.literal_type) && (token_1.lexeme = token_2.lexeme) && (token_1.line = token_2.line)
