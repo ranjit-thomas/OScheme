@@ -20,3 +20,16 @@ Executable "OScheme"
     MainIs: OScheme.ml
     CompiledObject: best
     BuildDepends: Interpreter
+
+Executable "Test_Lexer"
+    Path: tst
+    MainIs: LexerTester.ml
+    Build$: true
+    CompiledObject: best
+    BuildDepends: Interpreter, ounit2
+
+Test "Test_Lexer"
+    Run$: true
+    TestTools: Test_Lexer
+    Command: $Test_Lexer
+    WorkingDirectory: tst
