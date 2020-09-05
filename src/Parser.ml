@@ -9,32 +9,7 @@
 (* TODO: "Value" is gonna need to change a lot when s_value becomes a string as well*)
 
 open Token;;
-
-type s_expression =
-	| Value of float
-	| Boolean of bool
-	| Symbol of string
-	| Definition of
-	{
-		variable: string;
-		expression: s_expression;
-	} 
-	| Func_Call of
-	{
-		proc: s_expression;
-		args: s_expression list;
-	}
-	| Conditional of 
-	{ 
-		condition: s_expression; 
-		conseq: s_expression;
-		alt: s_expression;
-	}
-	| Lambda of 
-	{
-		args: string list;
-		procedure: s_expression;
-	}
+open SExpression;;
 
 (* 
  * Input: token list

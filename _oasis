@@ -13,7 +13,7 @@ Plugins: META (0.4), DevFiles (0.4)
 Library "Interpreter"
     Path: src
     Modules: Lexer, Parser
-    InternalModules: Token
+    InternalModules: Token, SExpression
 
 Executable "OScheme"
     Path: src
@@ -21,15 +21,28 @@ Executable "OScheme"
     CompiledObject: best
     BuildDepends: Interpreter
 
-Executable "Test_Lexer"
+Executable "LexerTester"
     Path: tst
     MainIs: LexerTester.ml
     Build$: true
     CompiledObject: best
     BuildDepends: Interpreter, ounit2
 
-Test "Test_Lexer"
+Test "LexerTester"
     Run$: true
-    TestTools: Test_Lexer
-    Command: $Test_Lexer
+    TestTools: LexerTester
+    Command: $LexerTester
+    WorkingDirectory: tst
+
+Executable "ParserTester"
+    Path: tst
+    MainIs: ParserTester.ml
+    Build$: true
+    CompiledObject: best
+    BuildDepends: Interpreter, ounit2
+
+Test "ParserTester"
+    Run$: true
+    TestTools: ParserTester
+    Command: $ParserTester
     WorkingDirectory: tst

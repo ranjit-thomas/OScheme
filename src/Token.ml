@@ -6,16 +6,12 @@
  *)
 
 type token_type =
-	
 	| LEFT_PAREN
 	| RIGHT_PAREN
-
 	(* literals *)
 	| SYMBOL
 	| NUMBER
-
 	| BOOLEAN of bool
-
 	(* keywords *)
 	| IF
 	| DEFINE
