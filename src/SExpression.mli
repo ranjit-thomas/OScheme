@@ -11,7 +11,7 @@ type s_expression =
 	| Symbol of string
 	| Definition of
 	{
-		variable: string;
+		variable: s_expression;
 		expression: s_expression;
 	} 
 	| Func_Call of
@@ -21,12 +21,12 @@ type s_expression =
 	}
 	| Conditional of 
 	{ 
-		condition: s_expression; 
+		cond: s_expression; 
 		conseq: s_expression;
 		alt: s_expression;
 	}
 	| Lambda of 
 	{
-		args: string list;
-		procedure: s_expression;
+		args: s_expression list;
+		proc: s_expression;
 	}
