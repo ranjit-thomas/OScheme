@@ -42,7 +42,7 @@ let test_right_paren test_ctxt =
 	| (actual_token :: _ ) -> assert (token_compare actual_token expected_token)
 	| _ -> failwith "Error in test implimentation."
 
-let test_boolean_true test_ctxt =
+let test_boolean test_ctxt =
 	let expected_token =
 	{
 		generic_type = BOOLEAN true;
@@ -52,19 +52,6 @@ let test_boolean_true test_ctxt =
 	}
 	in 
 	match process_tokens_initializer "#t" with
-	| (actual_token :: _ ) -> assert (token_compare actual_token expected_token)
-	| _ -> failwith "Error in test implimentation."
-
-let test_boolean_false test_ctxt =
-	let expected_token =
-	{
-		generic_type = BOOLEAN false;
-		literal_type = None;
-		lexeme = "false";
-		line = 1;
-	}
-	in 
-	match process_tokens_initializer "#f" with
 	| (actual_token :: _ ) -> assert (token_compare actual_token expected_token)
 	| _ -> failwith "Error in test implimentation."
 
@@ -159,8 +146,7 @@ let all_tests =
 		"test_newline" >:: test_newline;
 		"test_left_paren" >:: test_left_paren;
 		"test_right_paren" >:: test_right_paren;
-		"test_boolean_true" >:: test_boolean_true;
-		"test_boolean_false" >:: test_boolean_false;
+		"test_boolean" >:: test_boolean;
 		"test_fail_with_lone_pound" >:: test_fail_with_lone_pound;
 		"test_number" >:: test_number;
 		"test_symbol" >:: test_symbol;

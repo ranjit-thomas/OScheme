@@ -49,3 +49,6 @@ type token_processor =
 }
 
 val token_compare: token -> token -> bool
+
+
+val get_lexeme: token -> string

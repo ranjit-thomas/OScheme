@@ -5,10 +5,11 @@
  *  of any file read at the command line.  If no filename is called, program is run interactively.
  *
  *)
+open Token;;
 
- let run input =
+let run input =
 	let tokens = Lexer.process_tokens_initializer input in 
-	let _ = List.iter (fun token -> print_endline (Lexer.get_lexeme token)) tokens in
+	let _ = List.iter (fun token -> print_endline token.lexeme) tokens in
 	let (_, _) = Parser.tokens_to_s_expr tokens in
 	()
 	

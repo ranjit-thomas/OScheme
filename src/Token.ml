@@ -45,3 +45,10 @@ type token_processor =
 }
 
 let token_compare token_1 token_2 = (token_1.generic_type = token_2.generic_type) && (token_1.literal_type = token_2.literal_type) && (token_1.lexeme = token_2.lexeme) && (token_1.line = token_2.line)
+
+(*
+ * Input: token
+ * Output: string
+ * Does: Returns the lexeme attribute of a token.  Allows us to keep the "token" type hidden.
+ *)
+let get_lexeme processed_token = processed_token.lexeme

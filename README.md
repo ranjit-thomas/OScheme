@@ -2,6 +2,7 @@
 <h3>Not Yet Implemented (Be sure to update above trees when I do):</h3>
 
 - More specific error messages.
+- Need to make Token and SExpression class private (right now all fields can be easily accessed and modifified).
 - Running empty scheme programs.
 - S-Expressions need to be pointers.
 - Lists
@@ -14,6 +15,7 @@
 - Migrate this entire file to another file with another name, and make this actual "README".
 - Create a script that runs all the other testing scripts.
 - Consider removing the "token_literal_type" filed of token and somehow directly incorporating the literals into "token_type"
+- There's a lot of lack of coverage in unit tests... that needs to be fixed one day.
 
 <h1>Lexical Analysis of Scheme (AST used by interpereter)</h1>
 

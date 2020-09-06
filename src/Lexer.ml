@@ -8,13 +8,6 @@
  open Token;;
 
 (*
- * Input: token
- * Output: string
- * Does: Returns the lexeme attribute of a token.  Allows us to keep the "token" type hidden.
- *)
- let get_lexeme processed_token = processed_token.lexeme
-
-(*
  * Input: token_processor
  * Returns: bool
  * Does: Checks the "source" attribute of token_processor to see if it's finished parsing the string.
