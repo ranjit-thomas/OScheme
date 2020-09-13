@@ -2,6 +2,8 @@
 <h3>Not Yet Implemented (Be sure to update above trees when I do):</h3>
 
 - More specific error messages.
+- Refer to https://github.com/cwfoo/ocaml-scheme-interpreter to see how to use "make test" and "make (a single executable)".
+- I think my token and s-expression classes are structs within a struct... see if i can change that.
 - Need to make Token and SExpression class private (right now all fields can be easily accessed and modifified).
 - Running empty scheme programs.
 - S-Expressions need to be pointers.
@@ -54,14 +56,14 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 
 <h1>DesignPlan</h1>
 
-<h3>Prologue: Setting Up User-Interaction</h3>
+<h2>The Front End</h2>
+
+<h3>Setting Up User-Interaction</h3>
 
 1. Set up a main function that looks exclusively for one or zero arguments.
 2. Set up a function to call when in interactive mode.
 3. Set up a function to call when in input-file mode.
 4. Set up a generic, "run" function.
-
-<h2>The Front End</h2>
 
 <h3>The Lexer</h3>
 
@@ -77,6 +79,8 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 4. Cover all cases for non-literals.
 5. Cover cases for literals (symbols and numbers).
 
+<h2>The Back End</h2>
+
 <h3>The Parser</h3>
 
 1. Initialize an enum for each piece of grammar in Scheme (see above lexical analysis of scheme).
@@ -87,9 +91,12 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 	4. Open paranthesis --> a list of S-Expresions that need to be recursed on.
 3. Write a file to test each case.
 
-<h2>The Back End</h2>
-
 <h3>The Evaluater</h3>
+
+1. Create a couple of helper functions that can:
+	- 
+	-
+
 
 **Note:** This is where we'll create an "env" where we'll finaly be able to include some unary and binary operators (see "Environemnts" section of https://norvig.com/lispy.html)
 
