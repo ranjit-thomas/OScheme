@@ -91,11 +91,23 @@ S-Func-Call := ( *Func-Name* [*Func-Arg*]* )
 	4. Open paranthesis --> a list of S-Expresions that need to be recursed on.
 3. Write a file to test each case.
 
+<h3>The Env: An Internal Module Used by Evaluater</h3>
+
+1. Create a type that is an OCaml Dictionary that maps SExpression symbols to any SExpression
+2. Create a constructor that returns a default global environment that's loaded with some default operators like '+', '-', 'not'.  Once I have these working, look to [here](https://courses.cs.washington.edu/courses/cse341/03wi/scheme/basics.html) for more examples of primitive types.
+3. Create a constructor that returns a default local environment thats loaded with parameters that are passed in.
+4. Create a method that combines global and local environment and returns a new, global env.
+5. Create a __lookup__ method that searches a local env, and another one that searches a global env.
+6. Create a __bind__ method that adds to a local env and returns a new, local env.  This might be more complex then I think.
+
 <h3>The Evaluater</h3>
 
 1. Create a couple of helper functions that can:
-	- 
-	-
+	- Determine the type of a value
+	- Determine whether a value is "truthy".
+	- Tell if two objects are equal.
+2. Consider creating a superclass for all values or all objects.
+3. 
 
 
 **Note:** This is where we'll create an "env" where we'll finaly be able to include some unary and binary operators (see "Environemnts" section of https://norvig.com/lispy.html)
